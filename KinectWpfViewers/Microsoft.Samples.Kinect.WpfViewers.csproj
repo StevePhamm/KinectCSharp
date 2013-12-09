@@ -31,9 +31,42 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Coding4Fun.Kinect.Wpf">
+      <HintPath>..\KinectExplorer-WPF\packages\Coding4Fun.Kinect.Wpf.1.7.0\lib\Coding4Fun.Kinect.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Kinect.Toolbox">
+      <HintPath>..\KinectExplorer-WPF\packages\KinectToolbox.1.3.0.0\lib\Kinect.Toolbox.dll</HintPath>
+    </Reference>
+    <Reference Include="Kinect.Toolbox.Voice">
+      <HintPath>..\KinectExplorer-WPF\packages\KinectToolbox.1.3.0.0\lib\Kinect.Toolbox.Voice.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Drawing">
+      <HintPath>..\KinectExplorer-WPF\packages\Coding4Fun.Kinect.Wpf.1.7.0\lib\Microsoft.Expression.Drawing.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Kinect">
       <HintPath>$(KINECTSDK10_DIR)\Assemblies\Microsoft.Kinect.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Kinect.Toolkit.FaceTracking">
+      <HintPath>..\KinectExplorer-WPF\packages\KinectToolbox.1.3.0.0\lib\Microsoft.Kinect.Toolkit.FaceTracking.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Speech, Version=11.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
     </Reference>
@@ -55,6 +88,7 @@
     <Compile Include="Converters.cs" />
     <Compile Include="DepthColorizer.cs" />
     <Compile Include="KinectControl.cs" />
+    <Compile Include="KinectRecordManager.cs" />
     <Compile Include="KinectSensorManagerEventArgs.cs" />
     <Compile Include="KinectSkeletonChooser.cs" />
     <Compile Include="KinectViewer.cs" />
@@ -99,6 +133,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -138,6 +174,37 @@
     <Resource Include="Images\KinectTilt.png" />
     <Resource Include="Images\Slider.png" />
     <Resource Include="Images\SliderTrack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\controls\bookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\controls\control_fast_forward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\controls\control_pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\controls\control_play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\controls\control_record.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\controls\control_repeat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\controls\control_rewind.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\controls\control_stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FaceTrackData.dll" />
+    <Content Include="FaceTrackLib.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

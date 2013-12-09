@@ -12,12 +12,14 @@ namespace Microsoft.Samples.Kinect.WpfViewers
     using System.Windows.Data;
     using System.Windows.Input;
     using Microsoft.Kinect;
+    using System.Windows.Media.Imaging;
 
     /// <summary>
     /// Interaction logic for KinectSettings.xaml
     /// </summary>
     public partial class KinectSettings : KinectControl
     {
+
         public static readonly DependencyProperty DepthTreatmentProperty =
             DependencyProperty.Register(
                 "DepthTreatment",
@@ -26,6 +28,7 @@ namespace Microsoft.Samples.Kinect.WpfViewers
                 new PropertyMetadata(KinectDepthTreatment.ClampUnreliableDepths));
 
         private readonly KinectSettingsViewModel viewModel = new KinectSettingsViewModel();
+        private KinectRecordManager RecordManager = new KinectRecordManager();
 
         public KinectSettings()
         {
@@ -44,7 +47,12 @@ namespace Microsoft.Samples.Kinect.WpfViewers
 
             this.InitializeComponent();
 
-            this.ViewModelRoot.DataContext = this.viewModel;
+            this.Dispatcher.ShutdownStarted += OnShutdown;
+        }
+
+        private void OnShutdown(object sender, EventArgs e)
+        {
+            this.RecordManager.StopRecording();
         }
 
         public KinectDepthTreatment DepthTreatment
@@ -90,7 +98,7 @@ namespace Microsoft.Samples.Kinect.WpfViewers
                 {
                     var position = Mouse.GetPosition(this.SliderTrack);
                     int newAngle = -27 + (int)Math.Round(54.0 * (this.SliderTrack.ActualHeight - position.Y) / this.SliderTrack.ActualHeight);
-                    
+
                     if (newAngle < -27)
                     {
                         newAngle = -27;
@@ -155,6 +163,27 @@ namespace Microsoft.Samples.Kinect.WpfViewers
             settings.Gain = gain;
             settings.PowerLineFrequency = powerLineFrequency;
             settings.BacklightCompensationMode = backlightCompensationMode;
+        }
+
+        private void ToggleRecord(object sender, RoutedEventArgs e)
+        {
+            RecordManager.ToggleRecord();
+            UpdateRecordButton();
+        }
+
+        private void UpdateRecordButton()
+        {
+            //TODO cannot find these image sources
+            if (RecordManager.Recording)
+            {
+                RecordImage.Source = new BitmapImage(new Uri(@"/component/Images/controls/control_stop.png", UriKind.Relative));
+                RecordText.Text = "Stop";
+            }
+            else
+            {
+                RecordImage.Source = new BitmapImage(new Uri(@"/component/Images/controls/control_record.png", UriKind.Relative)); ;
+                RecordText.Text = "Record";
+            }
         }
     }
 }

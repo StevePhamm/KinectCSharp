@@ -51,7 +51,15 @@ namespace Microsoft.Samples.Kinect.KinectExplorer
             this.DataContext = this.viewModel;
             
             InitializeComponent();
+            Closing += this.OnClosing;
         }
+
+        private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //todo stop recording video on close!
+        }
+
+
 
         public KinectSensor KinectSensor
         {
