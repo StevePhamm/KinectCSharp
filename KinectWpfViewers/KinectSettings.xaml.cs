@@ -176,12 +176,10 @@ namespace Microsoft.Samples.Kinect.WpfViewers
             //TODO cannot find these image sources
             if (RecordManager.Recording)
             {
-                RecordImage.Source = new BitmapImage(new Uri(@"/component/Images/controls/control_stop.png", UriKind.Relative));
                 RecordText.Text = "Stop";
             }
             else
             {
-                RecordImage.Source = new BitmapImage(new Uri(@"/component/Images/controls/control_record.png", UriKind.Relative)); ;
                 RecordText.Text = "Record";
             }
         }

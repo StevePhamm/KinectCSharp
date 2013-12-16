@@ -312,10 +312,7 @@
                     <TextBox Tag="RecordFilePath" Grid.Row="0" Grid.Column="0" Width="125" Margin="5"></TextBox>
                     <TextBlock Style="{StaticResource KinectTextBlock}" Grid.Row="0" Grid.Column="1">File Name</TextBlock>
                     <Button Tag="RecordButton" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Margin="5" Click="ToggleRecord">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Name="RecordImage" Source="Images\controls\control_record.png"/>
                             <TextBlock Name="RecordText" Padding="4, 0, 0, 0"><Run Text="Record" /></TextBlock>
-                        </StackPanel>
                     </Button>
                 </Grid>
             </StackPanel>
