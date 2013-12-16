@@ -21,12 +21,14 @@ namespace Microsoft.Samples.Kinect.WpfViewers
         private BufferedStream ColorRecordStream;
         private BufferedStream DepthRecordStream;
 
+        public String RecordPath { get; set;}
         public bool Recording { get; private set; }
 
 
         public KinectRecordManager()
         {
             Recording = false;
+            RecordPath = "";
             KinectSensor = KinectSensor.KinectSensors.FirstOrDefault(e => e.Status == KinectStatus.Connected);
             KinectSensor.AllFramesReady += this.OnAllFramesReady;
         }
@@ -70,9 +72,9 @@ namespace Microsoft.Samples.Kinect.WpfViewers
             if (!Recording)
             {
                 System.Diagnostics.Debug.WriteLine("Start recording...");
-                string skeletonFile = "C:/skeleton.data";
-                string colorFile = "C:/color.data.gz";
-                string depthFile = "C:/depth.data";
+                string skeletonFile = Path.Combine(RecordPath, "skeleton.data");
+                string colorFile =  Path.Combine(RecordPath, "C:/color.data.");
+                string depthFile =  Path.Combine(RecordPath, "C:/depth.data");
                 SkeletonRecordStream = new BufferedStream(new FileStream(skeletonFile, FileMode.Create));
                 ColorRecordStream = new BufferedStream(new FileStream(colorFile, FileMode.Create));
                 DepthRecordStream = new BufferedStream(new FileStream(depthFile, FileMode.Create));

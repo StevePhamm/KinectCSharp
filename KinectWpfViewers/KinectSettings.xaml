@@ -309,7 +309,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <TextBox Tag="RecordFilePath" Grid.Row="0" Grid.Column="0" Width="125" Margin="5"></TextBox>
+                    <TextBox Name="RecordFilePath" Grid.Row="0" Grid.Column="0" Width="125" Margin="5"></TextBox>
                     <TextBlock Style="{StaticResource KinectTextBlock}" Grid.Row="0" Grid.Column="1">File Name</TextBlock>
                     <Button Tag="RecordButton" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Margin="5" Click="ToggleRecord">
                             <TextBlock Name="RecordText" Padding="4, 0, 0, 0"><Run Text="Record" /></TextBlock>

@@ -13,6 +13,7 @@ namespace Microsoft.Samples.Kinect.WpfViewers
     using System.Windows.Input;
     using Microsoft.Kinect;
     using System.Windows.Media.Imaging;
+    using System.IO;
 
     /// <summary>
     /// Interaction logic for KinectSettings.xaml
@@ -48,6 +49,7 @@ namespace Microsoft.Samples.Kinect.WpfViewers
             this.InitializeComponent();
 
             this.Dispatcher.ShutdownStarted += OnShutdown;
+            this.RecordFilePath.Text = Directory.GetCurrentDirectory();
         }
 
         private void OnShutdown(object sender, EventArgs e)
@@ -167,6 +169,8 @@ namespace Microsoft.Samples.Kinect.WpfViewers
 
         private void ToggleRecord(object sender, RoutedEventArgs e)
         {
+            if (!RecordManager.Recording)
+                RecordManager.RecordPath = RecordFilePath.Text;
             RecordManager.ToggleRecord();
             UpdateRecordButton();
         }
