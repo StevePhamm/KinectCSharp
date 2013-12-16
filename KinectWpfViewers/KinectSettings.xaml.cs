@@ -170,7 +170,10 @@ namespace Microsoft.Samples.Kinect.WpfViewers
         private void ToggleRecord(object sender, RoutedEventArgs e)
         {
             if (!RecordManager.Recording)
+            {
                 RecordManager.RecordPath = RecordFilePath.Text;
+                RecordManager.RecordFileName = RecordFileName.Text;
+            }
             RecordManager.ToggleRecord();
             UpdateRecordButton();
         }
