@@ -168,7 +168,7 @@ namespace Microsoft.Samples.Kinect.WpfViewers
                     typeof(SkeletonTrackingMode),
                     typeof(KinectSensorManager),
                     new PropertyMetadata(
-                        SkeletonTrackingMode.Default,
+                        SkeletonTrackingMode.Seated,
                         (sender, args) => ((KinectSensorManager)sender).EnsureSkeletonStreamState()));
 
             SkeletonEnableTrackingInNearModeProperty =
