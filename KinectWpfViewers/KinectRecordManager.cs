@@ -74,9 +74,11 @@ namespace Microsoft.Samples.Kinect.WpfViewers
             if (!Recording)
             {
                 System.Diagnostics.Debug.WriteLine("Start recording...");
+                string logFile = Path.Combine(RecordPath, RecordFileName + ".log");
                 string skeletonFile = Path.Combine(RecordPath, RecordFileName + "_skeleton.data");
-                string colorFile = Path.Combine(RecordPath, RecordFileName + "_color.data.");
+                string colorFile = Path.Combine(RecordPath, RecordFileName + "_color.data");
                 string depthFile = Path.Combine(RecordPath, RecordFileName + "_depth.data");
+                LogStartTime(logFile);
                 SkeletonRecordStream = new BufferedStream(new FileStream(skeletonFile, FileMode.Create));
                 ColorRecordStream = new BufferedStream(new FileStream(colorFile, FileMode.Create));
                 DepthRecordStream = new BufferedStream(new FileStream(depthFile, FileMode.Create));
@@ -86,6 +88,11 @@ namespace Microsoft.Samples.Kinect.WpfViewers
                 KinectDepthRecorder = new KinectRecorder(KinectRecordOptions.Depth, DepthRecordStream);
                 Recording = true;
             }
+        }
+
+        private void LogStartTime(string logFile)
+        {
+            File.WriteAllText(logFile, "startTime: " +  System.DateTime.Now.Ticks + "\n");
         }
 
         public void StopRecording()
